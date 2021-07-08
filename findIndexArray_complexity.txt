@@ -1,0 +1,3 @@
+# Time and space complexity of my algorithm
+Time complexity: O(n)
+Space complexity: O(1)
