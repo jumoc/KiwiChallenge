@@ -1,24 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { createTheme } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import FormControl from '@material-ui/core/FormControl';
-import { green, orange } from '@material-ui/core/colors';
 import SearchIcon from '@material-ui/icons/Search';
 const axios = require('axios').default;
-
-const innerTheme = createTheme({
-    palette: {
-        primary: {
-            main: orange[500],
-        },
-        secondary: {
-            main: green[500],
-        },
-    },
-});
 
 const styles = makeStyles({
     searchButton: {
@@ -57,14 +43,12 @@ const ArrayInput = () => {
     const [search, setSearch] = useState('');
     const [index, setIndex] = useState('');
 
+    /**
+     * sendRequest - sends the array to the API
+     * @param array array of numbers 
+     * @returns index response from the API
+     */
     const sendRequest = async (array) => {
-
-        console.log(array);
-        console.log(JSON.stringify(array));
-
-        const payload = {
-            array
-        }
 
         try {
             const response = await axios({
@@ -77,13 +61,12 @@ const ArrayInput = () => {
             });
             return (response.data.index);
         } catch (err) {
-            console.error(err);
-            return err;
+            return err
         }
     }
 
     /**
-     * handleSearch - handles the search variable for the getAnime  function
+     * handleSearch - handles the search variable when search is triggered
      * @param e - event passed from the form
      * return - error if failed request
      */
@@ -108,7 +91,11 @@ const ArrayInput = () => {
             console.error(error);
         }
     }
-
+    /**
+     * generateIndexComponent - dinamically generates two html elements with the index state
+     * @param index 
+     * @returns Component
+     */
     const generateIndexComponent = (index) => {
         return (
             <div style={{ textAlign: 'center' }}>
@@ -120,7 +107,7 @@ const ArrayInput = () => {
     }
 
     /**
-     * handleSearch - handles the search variable for the getAnime  function
+     * handleInput - manages all changes in the input
      * @param e - event passed from the form
      * return - error if failed request
      */
@@ -131,6 +118,7 @@ const ArrayInput = () => {
             !searchText[searchText.length - 1])
             setSearch(searchText)
     }
+
     return (
         <div>
             <form noValidate autoComplete='off' onSubmit={(e) => handleSearch(e)}>
