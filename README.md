@@ -2,6 +2,8 @@
 This is the repository where the Algorithm, Frontend and API are.
 All the links to the individual folders will be down below.
 
+Functional demo hosted at Heroku, [here](https://kiwi-challenge-jumoc.herokuapp.com/)
+
 # Files
 
 [API](/api/)
